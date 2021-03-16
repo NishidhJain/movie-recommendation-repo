@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../css/Search.css';
 import { FaSearch } from 'react-icons/fa';
 
-function Search() {
+function Search({ searchMovie }) {
 	const [searchInpt, setSearchInpt] = useState('');
 
 	const handleChange = (e) => {
@@ -12,6 +12,7 @@ function Search() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log(searchInpt);
+		searchMovie(searchInpt);
 		setSearchInpt('');
 	};
 
