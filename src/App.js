@@ -1,7 +1,12 @@
 import './App.css';
+import { MovieProvider } from './context/Context';
 
 function App() {
-	return <div className='app'>Movie Recommendar</div>;
+	return (
+		<MovieProvider>
+			<div className='app'>Movie Recommendar</div>
+		</MovieProvider>
+	);
 }
 
 export default App;
