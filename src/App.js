@@ -14,15 +14,14 @@ function App() {
 					<Route path='/' exact>
 						<Dashboard />
 					</Route>
-					<Route path='/signin' exact>
+					<Route path='/signin'>
 						<SignIn />
 					</Route>
-					<Route path='/signup' exact>
+					<Route path='/signup'>
 						<SignUp />
 					</Route>
 				</Switch>
 			</Router>
-			<div className='app'>Movie Recommendar</div>
 		</MovieProvider>
 	);
 }

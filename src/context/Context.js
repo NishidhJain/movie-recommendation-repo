@@ -1,19 +1,31 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 const MovieContext = createContext();
 
 const APIKey = process.env.REACT_APP_API_KEY;
 const imgEndPoint = 'https://image.tmdb.org/t/p/w1280/';
 const searchMovieEndPoint = `https://api.themoviedb.org/3/search/movie?api_key=${APIKey}&language=en-US&query=`;
-
-// making custom hook, instead of this we can directly pass MovieContext and use it using useConetext(MovieContext)
-export const useTheme = () => {
-	return useContext(MovieContext);
-};
+const popularMoviesAPI = `https://api.themoviedb.org/3/movie/popular?api_key=${APIKey}&language=en-US&page=1`;
 
 // we are creating the provider and exporting it
-export function MovieProvider({ children }) {
-	const [movies, setMovies] = useState([]);
+function MovieProvider({ children }) {
+	const [popularMovies, setPopularMovies] = useState([]);
+
+	useEffect(() => {
+		async function fetchMovies() {
+			try {
+				const request = await fetch(popularMoviesAPI);
+				const response = await request.json();
+				setPopularMovies(response?.results);
+			} catch (err) {
+				console.log(err);
+			}
+		}
+
+		fetchMovies();
+	}, []);
+
+	console.log(popularMovies);
 
 	const searchMovie = async (movieName) => {
 		const searchAPI = `${searchMovieEndPoint}${movieName}`;
@@ -25,11 +37,13 @@ export function MovieProvider({ children }) {
 	};
 
 	return (
-		<MovieContext.Provider value={{ movies, searchMovie }}>
+		<MovieContext.Provider value={{ popularMovies, searchMovie }}>
 			{children}
 		</MovieContext.Provider>
 	);
 }
+
+export { MovieProvider, MovieContext };
 
 // Search API
 // https://api.themoviedb.org/3/search/movie?api_key={key}&language=en-US&query=name&page=1&include_adult=false
