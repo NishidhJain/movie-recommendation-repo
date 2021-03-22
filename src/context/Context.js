@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from 'react';
 const MovieContext = createContext();
 
 const APIKey = process.env.REACT_APP_API_KEY;
-const imgEndPoint = 'https://image.tmdb.org/t/p/w1280/';
+// const imgEndPoint = 'https://image.tmdb.org/t/p/w1280/';
 const searchMovieEndPoint = `https://api.themoviedb.org/3/search/movie?api_key=${APIKey}&language=en-US&query=`;
 const popularMoviesAPI = `https://api.themoviedb.org/3/movie/popular?api_key=${APIKey}&language=en-US&page=1`;
 

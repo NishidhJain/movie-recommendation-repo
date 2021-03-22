@@ -2,7 +2,7 @@
 	@include container;
 	display: flex;
 	justify-content: space-between;
-	padding: 2.5rem $paddingLR;
+	padding: 2.5rem $paddingLR 2rem;
 
 	&__left {
 		// @include flexCenter;

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { MovieContext } from '../context/Context';
 import { IoPlay } from 'react-icons/io5';
 import { AiOutlineStar } from 'react-icons/ai';
@@ -88,19 +88,23 @@ function BannerMovie() {
 
 	const getGenresName = () => {
 		return bannerMovie?.genre_ids?.map((value) => {
-			const genreName = genres.find((item) => item.id == value);
-			return genreName.name;
+			const genreName = genres.find((item) => item.id === value);
+			// console.log(genreName);
+			return genreName;
 		});
 	};
 
 	const genresList = getGenresName();
+	// console.log(genresList);
 
 	console.log(bannerMovie);
 	return (
 		<section className='banner'>
 			<div className='banner__left'>
 				<img
-					src={`${imgPath}${bannerMovie?.poster_path}`}
+					src={`${imgPath}${
+						bannerMovie?.poster_path || bannerMovie?.backdrop_path
+					}`}
 					alt={bannerMovie?.title}
 					className='banner__img'
 				/>
@@ -116,7 +120,9 @@ function BannerMovie() {
 				<p className='banner__description'>{bannerMovie?.overview}</p>
 				<div className='banner__genres'>
 					{genresList?.map((item) => (
-						<p className='banner__genre'>{item}</p>
+						<p key={item.id} className='banner__genre'>
+							{item.name}
+						</p>
 					))}
 				</div>
 				<button className='banner__btn'>
