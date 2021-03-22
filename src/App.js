@@ -4,7 +4,6 @@ import { MovieProvider } from './context/Context';
 import Dashboard from './pages/Dashboard';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import './App.css';
 
 function App() {
 	return (
