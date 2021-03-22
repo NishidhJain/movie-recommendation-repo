@@ -10,6 +10,7 @@ const popularMoviesAPI = `https://api.themoviedb.org/3/movie/popular?api_key=${A
 // we are creating the provider and exporting it
 function MovieProvider({ children }) {
 	const [popularMovies, setPopularMovies] = useState([]);
+	const [bannerMovie, setBannerMovie] = useState({});
 
 	useEffect(() => {
 		async function fetchMovies() {
@@ -17,6 +18,11 @@ function MovieProvider({ children }) {
 				const request = await fetch(popularMoviesAPI);
 				const response = await request.json();
 				setPopularMovies(response?.results);
+				setBannerMovie(
+					response?.results[
+						Math.floor(Math.random() * response?.results.length - 1)
+					]
+				);
 			} catch (err) {
 				console.log(err);
 			}
@@ -25,7 +31,7 @@ function MovieProvider({ children }) {
 		fetchMovies();
 	}, []);
 
-	console.log(popularMovies);
+	// console.log(popularMovies);
 
 	const searchMovie = async (movieName) => {
 		const searchAPI = `${searchMovieEndPoint}${movieName}`;
@@ -37,7 +43,7 @@ function MovieProvider({ children }) {
 	};
 
 	return (
-		<MovieContext.Provider value={{ popularMovies, searchMovie }}>
+		<MovieContext.Provider value={{ bannerMovie, popularMovies, searchMovie }}>
 			{children}
 		</MovieContext.Provider>
 	);

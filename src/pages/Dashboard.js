@@ -1,9 +1,12 @@
 import React from 'react';
+import BannerMovie from '../components/BannerMovie';
+import Header from '../components/Header';
 
 function Dashboard() {
 	return (
-		<div>
-			<h1>Dashboard</h1>
+		<div className='dashboard'>
+			<Header />
+			<BannerMovie />
 		</div>
 	);
 }

@@ -1,0 +1,22 @@
+.header {
+	@include container;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	// width: 100%;
+	padding: 0.5rem $paddingLR;
+	border-bottom: 2px solid #ddd;
+
+	&__list {
+		display: flex;
+	}
+
+	&__listItem {
+		padding: 0.5rem;
+	}
+
+	&__link {
+		text-decoration: none;
+		color: $mainColor;
+	}
+}

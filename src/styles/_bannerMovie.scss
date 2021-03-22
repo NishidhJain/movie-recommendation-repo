@@ -1,0 +1,85 @@
+.banner {
+	@include container;
+	display: flex;
+	justify-content: space-between;
+	padding: 2.5rem $paddingLR;
+
+	&__left {
+		// @include flexCenter;
+		width: 30%;
+	}
+
+	&__img {
+		width: 300px;
+		height: auto;
+		object-fit: cover;
+		border-radius: 20px;
+	}
+
+	&__right {
+		width: 60%;
+	}
+
+	&__top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 2.7rem;
+	}
+
+	&__ratingBox {
+		display: flex;
+		align-items: center;
+	}
+
+	&__title {
+		font-size: 2.2rem;
+		letter-spacing: 1px;
+	}
+
+	&__ratings {
+		font-size: 1.1rem;
+	}
+
+	&__description {
+		font-size: 1.2rem;
+		text-align: justify;
+		margin-bottom: 3rem;
+		color: $fontGrey;
+	}
+
+	&__genres {
+		display: flex;
+		align-items: center;
+		margin-bottom: 3rem;
+	}
+
+	&__genre {
+		color: $secondaryColor;
+		border: 1px solid $secondaryColor;
+		padding: 0.3rem 1rem;
+		border-radius: 30px;
+		margin-right: 1.5rem;
+		font-size: 1.07rem;
+	}
+
+	&__btn {
+		outline: none;
+		border: none;
+		padding: 0.7rem 1.2rem;
+		font-weight: 600;
+		font-size: 1.2rem;
+		border-radius: 30px;
+	}
+
+	&__playIcon {
+		margin-right: 0.4rem;
+		vertical-align: middle;
+	}
+
+	&__icon {
+		font-size: 1.7rem;
+		margin-right: 0.1rem;
+		color: $secondaryColor;
+	}
+}
