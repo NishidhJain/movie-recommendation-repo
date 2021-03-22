@@ -1,0 +1,30 @@
+.movie {
+	margin-right: 1.5rem;
+	background-color: #323b48;
+	border-radius: 10px;
+
+	&__img {
+		width: 230px;
+		height: auto;
+		object-fit: cover;
+		border-radius: 10px;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		box-shadow: 0 2px 7px rgba(0, 0, 0, 0.4);
+	}
+
+	&__bottom {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		padding: 0.2rem 0.5rem 0.4rem;
+	}
+
+	&__title {
+		flex: 0.8;
+	}
+
+	&__rating {
+		flex: 0.1;
+	}
+}
