@@ -14,6 +14,7 @@
 		height: auto;
 		object-fit: cover;
 		border-radius: 20px;
+		box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
 	}
 
 	&__right {
@@ -66,7 +67,7 @@
 	&__btn {
 		outline: none;
 		border: none;
-		padding: 0.7rem 1.2rem;
+		padding: 0.8rem 1.5rem;
 		font-weight: 600;
 		font-size: 1.2rem;
 		border-radius: 30px;
