@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaSearch } from 'react-icons/fa';
 
 function Header() {
 	return (
@@ -11,7 +12,7 @@ function Header() {
 					<ul className='header__list'>
 						<li className='header__listItem'>
 							<Link to='/search' className='header__link'>
-								Search
+								<FaSearch />
 							</Link>
 						</li>
 						<li className='header__listItem'>

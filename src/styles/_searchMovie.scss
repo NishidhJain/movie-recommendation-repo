@@ -1,0 +1,20 @@
+.searchMovie {
+	@include container;
+	position: relative;
+
+	&__title {
+		text-align: center;
+		margin-bottom: 1rem;
+	}
+
+	&__results {
+		margin-top: 2rem;
+		display: flex;
+		// justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
+	&__movies {
+		margin-bottom: 1rem;
+	}
+}

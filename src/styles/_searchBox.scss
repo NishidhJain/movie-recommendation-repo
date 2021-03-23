@@ -1,0 +1,42 @@
+.searchBox {
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.2);
+	padding: 0.4rem 0.6rem;
+	border-radius: 7px;
+
+	&__form {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__icon {
+		font-size: 1.2rem;
+		min-width: 25px;
+	}
+
+	&__input {
+		flex: 1;
+		padding: 0.3rem 0.5rem;
+		margin-right: 0.2rem;
+		text-indent: 5px;
+		border: none;
+		outline: none;
+		background: transparent;
+		font-size: 1.07rem;
+		color: #fff;
+
+		&::placeholder {
+			color: #fff;
+		}
+	}
+
+	&__btn {
+		padding: 0.5rem 1rem;
+		border-radius: 20px;
+		outline: none;
+		border: none;
+		font-weight: 600;
+		// background-color: $secondaryColor;
+	}
+}

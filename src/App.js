@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { MovieProvider } from './context/Context';
 import Dashboard from './pages/Dashboard';
+import SearchMovie from './pages/SearchMovie';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
@@ -12,6 +13,9 @@ function App() {
 				<Switch>
 					<Route path='/' exact>
 						<Dashboard />
+					</Route>
+					<Route path='/search'>
+						<SearchMovie />
 					</Route>
 					<Route path='/signin'>
 						<SignIn />

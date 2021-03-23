@@ -13,6 +13,7 @@ function MovieProvider({ children }) {
 	const [popularMovies, setPopularMovies] = useState([]);
 	const [trendingMovies, setTrendingMovies] = useState([]);
 	const [bannerMovie, setBannerMovie] = useState({});
+	const [searchResponse, setSearchResponse] = useState([]);
 
 	useEffect(() => {
 		async function fetchMovies() {
@@ -45,20 +46,30 @@ function MovieProvider({ children }) {
 	}, []);
 
 	// console.log(popularMovies);
-	console.log('Trending Movies : ', trendingMovies);
+	// console.log('Trending Movies : ', trendingMovies);
 
 	const searchMovie = async (movieName) => {
 		const searchAPI = `${searchMovieEndPoint}${movieName}`;
 
-		const findMovie = await fetch(searchAPI);
-		const jsonMovie = await findMovie.json();
-
-		console.log('Search response : ', jsonMovie);
+		try {
+			const findMovie = await fetch(searchAPI);
+			const jsonMovie = await findMovie.json();
+			console.log('Search response : ', jsonMovie);
+			setSearchResponse(jsonMovie.results);
+		} catch (err) {
+			console.log('err in searching movie', err);
+		}
 	};
 
 	return (
 		<MovieContext.Provider
-			value={{ bannerMovie, popularMovies, trendingMovies }}
+			value={{
+				bannerMovie,
+				popularMovies,
+				trendingMovies,
+				searchMovie,
+				searchResponse,
+			}}
 		>
 			{children}
 		</MovieContext.Provider>
