@@ -12,7 +12,7 @@ function Header() {
 					<ul className='header__list'>
 						<li className='header__listItem'>
 							<Link to='/search' className='header__link'>
-								<FaSearch />
+								<FaSearch className='header__icon' />
 							</Link>
 						</li>
 						<li className='header__listItem'>
