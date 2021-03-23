@@ -97,7 +97,7 @@ function BannerMovie() {
 	const genresList = getGenresName();
 	// console.log(genresList);
 
-	console.log(bannerMovie);
+	// console.log(bannerMovie);
 	return (
 		<section className='banner'>
 			<div className='banner__left'>

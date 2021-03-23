@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600&display=swap');
+
 @import './styles/variables';
 @import './styles/header';
 @import './styles/bannerMovie';
@@ -5,11 +7,13 @@
 @import './styles/movie';
 @import './styles/searchMovie';
 @import './styles/searchBox';
+@import './styles/signIn';
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: 'Roboto Slab', serif;
 }
 
 body {

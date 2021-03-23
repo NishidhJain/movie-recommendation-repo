@@ -54,7 +54,7 @@ function MovieProvider({ children }) {
 		try {
 			const findMovie = await fetch(searchAPI);
 			const jsonMovie = await findMovie.json();
-			console.log('Search response : ', jsonMovie);
+			// console.log('Search response : ', jsonMovie);
 			setSearchResponse(jsonMovie.results);
 		} catch (err) {
 			console.log('err in searching movie', err);
