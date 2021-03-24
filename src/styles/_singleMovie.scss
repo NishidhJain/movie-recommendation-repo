@@ -7,6 +7,8 @@
 	&__left {
 		// @include flexCenter;
 		width: 45%;
+		position: sticky;
+		top: 20px;
 		// height: 95vh;
 	}
 
@@ -23,7 +25,99 @@
 	}
 
 	&__title {
-		font-size: 4rem;
+		font-size: 3rem;
 		letter-spacing: 3px;
+	}
+
+	&__tagline {
+		margin-top: 0.6rem;
+		letter-spacing: 1px;
+		font-size: 1.2rem;
+		color: $fontGrey;
+	}
+
+	&__ratingBox {
+		margin-top: 1.4rem;
+		display: flex;
+		align-items: center;
+		color: $secondaryColor;
+	}
+
+	&__runtime {
+		margin-top: 1.4rem;
+		display: flex;
+		align-items: center;
+		color: $secondaryColor;
+	}
+
+	&__icon {
+		font-size: 1.7rem;
+		margin-right: 0.7rem;
+	}
+
+	&__duration {
+		font-size: 1.2rem;
+		letter-spacing: 1px;
+	}
+
+	&__release {
+		margin-top: 1.4rem;
+		color: $secondaryColor;
+		display: flex;
+		align-items: center;
+	}
+
+	&__genres {
+		margin-top: 1.4rem;
+		display: flex;
+	}
+
+	&__genre {
+		padding: 0 1rem;
+		border-right: 1px solid #aaa;
+		color: $secondaryColor;
+		&:first-child {
+			padding-left: 0;
+		}
+		&:last-child {
+			border: 0;
+		}
+	}
+
+	&__overview {
+		margin-top: 1.4rem;
+		color: $fontGrey;
+		text-align: justify;
+		font-size: 1.05rem;
+	}
+
+	&__btn {
+		outline: none;
+		border: none;
+		padding: 0.9rem 1.5rem;
+		font-weight: 600;
+		font-size: 1.2rem;
+		border-radius: 30px;
+		margin-top: 1.4rem;
+	}
+
+	&__playIcon {
+		margin-right: 0.4rem;
+		vertical-align: middle;
+	}
+
+	&__companies {
+		margin-top: 1.4rem;
+	}
+
+	&__companyLogo {
+		width: 170px;
+		height: auto;
+		max-height: 80px;
+		object-fit: contain;
+		margin-right: 1rem;
+		background: rgba(255, 255, 255, 0.5);
+		padding: 0.5rem;
+		border-radius: 5px;
 	}
 }

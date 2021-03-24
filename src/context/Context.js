@@ -75,6 +75,7 @@ function MovieProvider({ children }) {
 			console.log(err);
 		}
 	};
+	// console.log(trendingMovies);
 
 	return (
 		<MovieContext.Provider
