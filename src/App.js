@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import SearchMovie from './pages/SearchMovie';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import SingleMovie from './pages/SingleMovie';
 
 function App() {
 	return (
@@ -13,6 +14,9 @@ function App() {
 				<Switch>
 					<Route path='/' exact>
 						<Dashboard />
+					</Route>
+					<Route path='/movie/:id'>
+						<SingleMovie />
 					</Route>
 					<Route path='/search'>
 						<SearchMovie />

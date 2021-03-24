@@ -7,6 +7,7 @@ const APIKey = process.env.REACT_APP_API_KEY;
 const searchMovieEndPoint = `https://api.themoviedb.org/3/search/movie?api_key=${APIKey}&language=en-US&query=`;
 const popularMoviesAPI = `https://api.themoviedb.org/3/movie/popular?api_key=${APIKey}&language=en-US&page=1`;
 const trendingMovieAPI = `https://api.themoviedb.org/3/trending/movie/day?api_key=${APIKey}`;
+const getMovieAPI = `https://api.themoviedb.org/3/movie/`;
 
 // we are creating the provider and exporting it
 function MovieProvider({ children }) {
@@ -14,6 +15,7 @@ function MovieProvider({ children }) {
 	const [trendingMovies, setTrendingMovies] = useState([]);
 	const [bannerMovie, setBannerMovie] = useState({});
 	const [searchResponse, setSearchResponse] = useState([]);
+	const [movie, setMovie] = useState({});
 
 	useEffect(() => {
 		async function fetchMovies() {
@@ -61,6 +63,19 @@ function MovieProvider({ children }) {
 		}
 	};
 
+	const getSingleMovie = async (id) => {
+		try {
+			const searchRequest = await fetch(
+				`${getMovieAPI}${id}?api_key=${APIKey}&language=en-US`
+			);
+			const searchJSON = await searchRequest.json();
+			console.log(searchJSON);
+			setMovie(searchJSON);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	return (
 		<MovieContext.Provider
 			value={{
@@ -69,6 +84,8 @@ function MovieProvider({ children }) {
 				trendingMovies,
 				searchMovie,
 				searchResponse,
+				getSingleMovie,
+				movie,
 			}}
 		>
 			{children}

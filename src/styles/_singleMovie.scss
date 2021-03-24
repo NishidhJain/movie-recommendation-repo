@@ -1,0 +1,29 @@
+.singleMovie {
+	@include container;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 3rem;
+
+	&__left {
+		// @include flexCenter;
+		width: 45%;
+		// height: 95vh;
+	}
+
+	&__right {
+		width: 50%;
+	}
+	&__img {
+		width: 100%;
+		height: 90vh;
+		// max-height: 700px;
+		object-fit: cover;
+		border-radius: 20px;
+		box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.7);
+	}
+
+	&__title {
+		font-size: 4rem;
+		letter-spacing: 3px;
+	}
+}
