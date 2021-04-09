@@ -30,9 +30,9 @@ function SingleMovie() {
 	// };
 	// getSingleMovie();
 
-	// const handleWatchClick = () => {
-	// 	console.log(`Clicked Watch for movie ${id}`);
-	// };
+	const handleWatchClick = () => {
+		console.log(`Clicked Watch for movie ${id}`);
+	};
 
 	return (
 		<>
@@ -70,7 +70,7 @@ function SingleMovie() {
 							))}
 						</div>
 						<p className='singleMovie__overview'>{movie.overview}</p>
-						<button className='singleMovie__btn'>
+						<button className='singleMovie__btn' onClick={handleWatchClick}>
 							<IoPlay className='singleMovie__playIcon' />
 							Watch Movie
 						</button>
