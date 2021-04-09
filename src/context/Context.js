@@ -16,6 +16,7 @@ function MovieProvider({ children }) {
 	const [bannerMovie, setBannerMovie] = useState({});
 	const [searchResponse, setSearchResponse] = useState([]);
 	const [movie, setMovie] = useState({});
+	// const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		async function fetchMovies() {
@@ -56,7 +57,7 @@ function MovieProvider({ children }) {
 		try {
 			const findMovie = await fetch(searchAPI);
 			const jsonMovie = await findMovie.json();
-			// console.log('Search response : ', jsonMovie);
+			console.log('Search response : ', jsonMovie);
 			setSearchResponse(jsonMovie.results);
 		} catch (err) {
 			console.log('err in searching movie', err);
@@ -64,13 +65,15 @@ function MovieProvider({ children }) {
 	};
 
 	const getSingleMovie = async (id) => {
+		// setIsLoading(false);
 		try {
 			const searchRequest = await fetch(
 				`${getMovieAPI}${id}?api_key=${APIKey}&language=en-US`
 			);
 			const searchJSON = await searchRequest.json();
-			console.log(searchJSON);
+			// console.log(searchJSON);
 			setMovie(searchJSON);
+			// setIsLoading(false);
 		} catch (err) {
 			console.log(err);
 		}
