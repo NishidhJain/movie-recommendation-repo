@@ -8,11 +8,13 @@ const searchMovieEndPoint = `https://api.themoviedb.org/3/search/movie?api_key=$
 const popularMoviesAPI = `https://api.themoviedb.org/3/movie/popular?api_key=${APIKey}&language=en-US&page=1`;
 const trendingMovieAPI = `https://api.themoviedb.org/3/trending/movie/day?api_key=${APIKey}`;
 const getMovieAPI = `https://api.themoviedb.org/3/movie/`;
+// const getRecommendedMovies = `https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=${APIKey}&language=en-US&page=1`;
 
 // we are creating the provider and exporting it
 function MovieProvider({ children }) {
 	const [popularMovies, setPopularMovies] = useState([]);
 	const [trendingMovies, setTrendingMovies] = useState([]);
+	const [recommendedMovies, setRecommendedMovies] = useState([]);
 	const [bannerMovie, setBannerMovie] = useState({});
 	const [searchResponse, setSearchResponse] = useState([]);
 	const [movie, setMovie] = useState({});
@@ -44,8 +46,22 @@ function MovieProvider({ children }) {
 			}
 		}
 
+		const getRecommendation = async (id) => {
+			const recommendEndPoint = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${APIKey}&language=en-US&page=1`;
+
+			try {
+				const recMovies = await fetch(recommendEndPoint);
+				const jsonRecMovies = await recMovies.json();
+				console.log(jsonRecMovies);
+				setRecommendedMovies(jsonRecMovies.results);
+			} catch (err) {
+				console.log('err in fetching recommended movie : ', err);
+			}
+		};
+
 		fetchTrendingMovies();
 		fetchMovies();
+		getRecommendation(20359);
 	}, []);
 
 	// console.log(popularMovies);
@@ -90,6 +106,7 @@ function MovieProvider({ children }) {
 				searchResponse,
 				getSingleMovie,
 				movie,
+				recommendedMovies,
 			}}
 		>
 			{children}

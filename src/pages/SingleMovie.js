@@ -30,6 +30,10 @@ function SingleMovie() {
 	// };
 	// getSingleMovie();
 
+	// const handleWatchClick = () => {
+	// 	console.log(`Clicked Watch for movie ${id}`);
+	// };
+
 	return (
 		<>
 			{movie !== null && (
