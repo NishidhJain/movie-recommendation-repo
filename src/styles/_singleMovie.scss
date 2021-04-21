@@ -8,8 +8,8 @@
 		// @include flexCenter;
 		width: 45%;
 		position: sticky;
-		top: 20px;
-		// height: 95vh;
+		top: 0;
+		height: 100vh;
 	}
 
 	&__right {
@@ -106,18 +106,44 @@
 		vertical-align: middle;
 	}
 
-	&__companies {
+	// &__companies {
+	// 	margin-top: 1.4rem;
+	// }
+
+	// &__companyLogo {
+	// 	width: 170px;
+	// 	height: auto;
+	// 	max-height: 80px;
+	// 	object-fit: contain;
+	// 	margin-right: 1rem;
+	// 	background: rgba(255, 255, 255, 0.5);
+	// 	padding: 0.5rem;
+	// 	border-radius: 5px;
+	// }
+
+	&__similar {
+		margin-top: 2rem;
+	}
+
+	&__similarTitle {
+		text-align: center;
+		letter-spacing: 1px;
+		font-size: 1.5rem;
+	}
+
+	&__similarMovieDiv {
 		margin-top: 1.4rem;
 	}
 
-	&__companyLogo {
-		width: 170px;
-		height: auto;
-		max-height: 80px;
-		object-fit: contain;
-		margin-right: 1rem;
-		background: rgba(255, 255, 255, 0.5);
-		padding: 0.5rem;
+	&__similarMovieRow {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 1rem;
+		// background: RGBA(218, 165, 32, 0.15);
+		padding: 0.5rem 1rem;
 		border-radius: 5px;
+		// color: #daa520;
+		color: $fontGrey;
+		background-color: rgba(255, 255, 255, 0.08);
 	}
 }

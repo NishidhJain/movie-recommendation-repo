@@ -8,6 +8,7 @@ const searchMovieEndPoint = `https://api.themoviedb.org/3/search/movie?api_key=$
 const popularMoviesAPI = `https://api.themoviedb.org/3/movie/popular?api_key=${APIKey}&language=en-US&page=1`;
 const trendingMovieAPI = `https://api.themoviedb.org/3/trending/movie/day?api_key=${APIKey}`;
 const getMovieAPI = `https://api.themoviedb.org/3/movie/`;
+
 // const getRecommendedMovies = `https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=${APIKey}&language=en-US&page=1`;
 
 // we are creating the provider and exporting it
@@ -15,6 +16,7 @@ function MovieProvider({ children }) {
 	const [popularMovies, setPopularMovies] = useState([]);
 	const [trendingMovies, setTrendingMovies] = useState([]);
 	const [recommendedMovies, setRecommendedMovies] = useState([]);
+	const [similarMovies, setSimilarMovies] = useState([]);
 	const [bannerMovie, setBannerMovie] = useState({});
 	const [searchResponse, setSearchResponse] = useState([]);
 	const [movie, setMovie] = useState({});
@@ -147,6 +149,20 @@ function MovieProvider({ children }) {
 	};
 	// console.log(trendingMovies);
 
+	const getSimilarMovies = async (movieID) => {
+		const similarMovie = `https://api.themoviedb.org/3/movie/${movieID}/similar?api_key=${APIKey}&language=en-US&page=1`;
+
+		try {
+			const similarResponse = await fetch(similarMovie);
+			const similarMovieJSON = await similarResponse.json();
+			// console.log('Similar Movies : ', similarMovieJSON);
+			console.log('Similar Movies : ', similarMovieJSON.results);
+			setSimilarMovies(similarMovieJSON.results.slice(0, 10));
+		} catch (err) {
+			console.log('Error in fetching similar movies : ', err);
+		}
+	};
+
 	const updateWatchedMovies = (newMovie) => {
 		const isWatched = watchedMovies.includes(newMovie);
 
@@ -178,6 +194,8 @@ function MovieProvider({ children }) {
 				movie,
 				recommendedMovies,
 				updateWatchedMovies,
+				getSimilarMovies,
+				similarMovies,
 			}}
 		>
 			{children}

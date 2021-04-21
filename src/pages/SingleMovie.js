@@ -11,13 +11,18 @@ function SingleMovie() {
 	// const getMovieAPI = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`;
 
 	const { id } = useParams();
-	const { getSingleMovie, movie, updateWatchedMovies } = useContext(
-		MovieContext
-	);
+	const {
+		getSingleMovie,
+		movie,
+		updateWatchedMovies,
+		getSimilarMovies,
+		similarMovies,
+	} = useContext(MovieContext);
 	const imgURL = 'https://image.tmdb.org/t/p/w1280/';
 
 	useEffect(() => {
 		getSingleMovie(Number(id));
+		getSimilarMovies(Number(id));
 	}, [id]);
 
 	// const getSingleMovie = async () => {
@@ -87,6 +92,23 @@ function SingleMovie() {
 								/>
 							))}
 						</div> */}
+						{similarMovies.length !== 0 && (
+							<div className='singleMovie__similar'>
+								<h3 className='singleMovie__similarTitle'>Similar Movies</h3>
+								<div className='singleMovie__similarMovieDiv'>
+									{similarMovies?.map((similarMovie) => (
+										<div className='singleMovie__similarMovieRow'>
+											<p className='singleMovie__similarMovieTitle'>
+												{similarMovie.title || similarMovie.original_title}
+											</p>
+											<p className='singleMovie__similarMovieRating'>
+												{similarMovie.vote_average}
+											</p>
+										</div>
+									))}
+								</div>
+							</div>
+						)}
 					</div>
 				</section>
 			)}
