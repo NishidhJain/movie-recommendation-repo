@@ -33,7 +33,7 @@ function SingleMovie() {
 	// getSingleMovie();
 
 	const handleWatchClick = () => {
-		console.log(`Clicked Watch for movie ${id}`);
+		// console.log(`Clicked Watch for movie ${id}`);
 		updateWatchedMovies(id);
 	};
 
@@ -77,7 +77,7 @@ function SingleMovie() {
 							<IoPlay className='singleMovie__playIcon' />
 							Watch Movie
 						</button>
-						<div className='singleMovie__companies'>
+						{/* <div className='singleMovie__companies'>
 							{movie?.production_companies?.map((company) => (
 								<img
 									key={company.id}
@@ -86,7 +86,7 @@ function SingleMovie() {
 									className='singleMovie__companyLogo'
 								/>
 							))}
-						</div>
+						</div> */}
 					</div>
 				</section>
 			)}

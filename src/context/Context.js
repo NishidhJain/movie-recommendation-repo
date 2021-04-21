@@ -18,7 +18,7 @@ function MovieProvider({ children }) {
 	const [bannerMovie, setBannerMovie] = useState({});
 	const [searchResponse, setSearchResponse] = useState([]);
 	const [movie, setMovie] = useState({});
-	let recMoviesList = [];
+	// let recMoviesList = [];
 	// const [isLoading, setIsLoading] = useState(true);
 	const [watchedMovies, setWatchedMovies] = useState(['21614']);
 
@@ -70,32 +70,18 @@ function MovieProvider({ children }) {
 	}, []);
 
 	useEffect(() => {
-		// const getRecommendation = async (id) => {
-		// 	const recommendEndPoint = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${APIKey}&language=en-US&page=1`;
-
-		// 	try {
-		// 		const recMovies = await fetch(recommendEndPoint);
-		// 		const jsonRecMovies = await recMovies.json();
-		// 		console.log(jsonRecMovies);
-		// 		setRecommendedMovies(jsonRecMovies.results);
-		// 	} catch (err) {
-		// 		console.log('err in fetching recommended movie : ', err);
-		// 	}
-		// };
-
-		// getRecommendation(20359);
-
 		watchedMovies.forEach((movieId) => {
 			getRecForWatchedMovies(movieId);
 		});
 	}, []);
 
-	useEffect(() => {
-		console.log(
-			'Recommended Movies Array in side useEffect:',
-			recommendedMovies
-		);
-	}, [recommendedMovies]);
+	// useEffect to check the updated recommended movies array
+	// useEffect(() => {
+	// 	console.log(
+	// 		'Recommended Movies Array in side useEffect:',
+	// 		recommendedMovies
+	// 	);
+	// }, [recommendedMovies]);
 
 	const getRecForWatchedMovies = async (id) => {
 		console.log(`Inside getRecForWatchedMovies for id ${id}`);
@@ -112,26 +98,25 @@ function MovieProvider({ children }) {
 			}
 
 			const topFiveRecMovies = jsonRecMovies.results.slice(0, 5);
-			// console.log(jsonRecMovies.results);
 			console.log(`Top 5 rec movies for id ${id}: `, topFiveRecMovies);
-			recMoviesList = [...topFiveRecMovies, ...recMoviesList];
-			console.log('RecMOVIESLIST : ', recMoviesList);
-			// setRecommendedMovies(jsonRecMovies.results);
-			console.log('Recommended Movies Array : ', recommendedMovies);
+
+			// recMoviesList = [...topFiveRecMovies, ...recMoviesList];
+			// console.log('RecMOVIESLIST : ', recMoviesList);
+
+			// console.log('Recommended Movies Array : ', recommendedMovies);
+
 			// let newRecMovies = recommendedMovies.concat(topFiveRecMovies);
 			let newRecMovies = topFiveRecMovies.concat(recommendedMovies);
-
 			console.log('New Rec Movies', newRecMovies);
 			setRecommendedMovies(newRecMovies);
-			// setRecommendedMovies(recMoviesList);
 			console.log(`setRecommendedMovies called for ${id}`);
+
+			// setRecommendedMovies(jsonRecMovies.results);
+			// setRecommendedMovies(recMoviesList);
 		} catch (err) {
 			console.log('err in fetching recommended movie : ', err);
 		}
 	};
-
-	// console.log(popularMovies);
-	// console.log('Trending Movies : ', trendingMovies);
 
 	const searchMovie = async (movieName) => {
 		const searchAPI = `${searchMovieEndPoint}${movieName}`;
@@ -163,10 +148,19 @@ function MovieProvider({ children }) {
 	// console.log(trendingMovies);
 
 	const updateWatchedMovies = (newMovie) => {
-		const updatedMovies = [...watchedMovies, newMovie];
-		console.log('Updated watched movies are : ', updatedMovies);
-		setWatchedMovies(updatedMovies);
-		getRecForWatchedMovies(newMovie);
+		const isWatched = watchedMovies.includes(newMovie);
+
+		// if user has not watched movie previously
+		if (!isWatched) {
+			const updatedMovies = [...watchedMovies, newMovie];
+			console.log('Updated watched movies are : ', updatedMovies);
+			setWatchedMovies(updatedMovies);
+			getRecForWatchedMovies(newMovie);
+		} else {
+			console.log(
+				`You have watched this movie previously having id : ${newMovie}`
+			);
+		}
 	};
 
 	// console.log('Trending Movies : ', trendingMovies);
