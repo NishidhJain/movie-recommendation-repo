@@ -20,7 +20,7 @@ function MovieProvider({ children }) {
 	const [movie, setMovie] = useState({});
 	// let recMoviesList = [];
 	// const [isLoading, setIsLoading] = useState(true);
-	const [watchedMovies, setWatchedMovies] = useState(['21614']);
+	const [watchedMovies, setWatchedMovies] = useState([21614]);
 
 	useEffect(() => {
 		async function fetchMovies() {

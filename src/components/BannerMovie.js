@@ -5,7 +5,7 @@ import { AiOutlineStar } from 'react-icons/ai';
 
 function BannerMovie() {
 	const imgPath = 'https://image.tmdb.org/t/p/w1280/';
-	const { bannerMovie } = useContext(MovieContext);
+	const { bannerMovie, updateWatchedMovies } = useContext(MovieContext);
 
 	const genres = [
 		{
@@ -86,6 +86,11 @@ function BannerMovie() {
 		},
 	];
 
+	const handleWatchClick = () => {
+		// console.log(bannerMovie.id);
+		updateWatchedMovies(bannerMovie?.id);
+	};
+
 	const getGenresName = () => {
 		return bannerMovie?.genre_ids?.map((value) => {
 			const genreName = genres.find((item) => item.id === value);
@@ -125,7 +130,7 @@ function BannerMovie() {
 						</p>
 					))}
 				</div>
-				<button className='banner__btn'>
+				<button className='banner__btn' onClick={handleWatchClick}>
 					<IoPlay className='banner__playIcon' />
 					Watch Movie
 				</button>

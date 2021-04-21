@@ -17,7 +17,7 @@ function SingleMovie() {
 	const imgURL = 'https://image.tmdb.org/t/p/w1280/';
 
 	useEffect(() => {
-		getSingleMovie(id);
+		getSingleMovie(Number(id));
 	}, [id]);
 
 	// const getSingleMovie = async () => {
@@ -34,7 +34,7 @@ function SingleMovie() {
 
 	const handleWatchClick = () => {
 		// console.log(`Clicked Watch for movie ${id}`);
-		updateWatchedMovies(id);
+		updateWatchedMovies(Number(id));
 	};
 
 	return (
