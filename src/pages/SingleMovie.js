@@ -11,7 +11,9 @@ function SingleMovie() {
 	// const getMovieAPI = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`;
 
 	const { id } = useParams();
-	const { getSingleMovie, movie } = useContext(MovieContext);
+	const { getSingleMovie, movie, updateWatchedMovies } = useContext(
+		MovieContext
+	);
 	const imgURL = 'https://image.tmdb.org/t/p/w1280/';
 
 	useEffect(() => {
@@ -32,6 +34,7 @@ function SingleMovie() {
 
 	const handleWatchClick = () => {
 		console.log(`Clicked Watch for movie ${id}`);
+		updateWatchedMovies(id);
 	};
 
 	return (

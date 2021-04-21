@@ -18,7 +18,9 @@ function MovieProvider({ children }) {
 	const [bannerMovie, setBannerMovie] = useState({});
 	const [searchResponse, setSearchResponse] = useState([]);
 	const [movie, setMovie] = useState({});
+	let recMoviesList = [];
 	// const [isLoading, setIsLoading] = useState(true);
+	const [watchedMovies, setWatchedMovies] = useState(['21614']);
 
 	useEffect(() => {
 		async function fetchMovies() {
@@ -36,6 +38,24 @@ function MovieProvider({ children }) {
 			}
 		}
 
+		// const getRecommendation = async (id) => {
+		// 	const recommendEndPoint = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${APIKey}&language=en-US&page=1`;
+
+		// 	try {
+		// 		const recMovies = await fetch(recommendEndPoint);
+		// 		const jsonRecMovies = await recMovies.json();
+		// 		console.log(jsonRecMovies);
+		// 		setRecommendedMovies(jsonRecMovies.results);
+		// 	} catch (err) {
+		// 		console.log('err in fetching recommended movie : ', err);
+		// 	}
+		// };
+
+		fetchMovies();
+		// getRecommendation(20359);
+	}, []);
+
+	useEffect(() => {
 		async function fetchTrendingMovies() {
 			try {
 				const request = await fetch(trendingMovieAPI);
@@ -46,23 +66,69 @@ function MovieProvider({ children }) {
 			}
 		}
 
-		const getRecommendation = async (id) => {
-			const recommendEndPoint = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${APIKey}&language=en-US&page=1`;
-
-			try {
-				const recMovies = await fetch(recommendEndPoint);
-				const jsonRecMovies = await recMovies.json();
-				console.log(jsonRecMovies);
-				setRecommendedMovies(jsonRecMovies.results);
-			} catch (err) {
-				console.log('err in fetching recommended movie : ', err);
-			}
-		};
-
 		fetchTrendingMovies();
-		fetchMovies();
-		getRecommendation(20359);
 	}, []);
+
+	useEffect(() => {
+		// const getRecommendation = async (id) => {
+		// 	const recommendEndPoint = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${APIKey}&language=en-US&page=1`;
+
+		// 	try {
+		// 		const recMovies = await fetch(recommendEndPoint);
+		// 		const jsonRecMovies = await recMovies.json();
+		// 		console.log(jsonRecMovies);
+		// 		setRecommendedMovies(jsonRecMovies.results);
+		// 	} catch (err) {
+		// 		console.log('err in fetching recommended movie : ', err);
+		// 	}
+		// };
+
+		// getRecommendation(20359);
+
+		watchedMovies.forEach((movieId) => {
+			getRecForWatchedMovies(movieId);
+		});
+	}, []);
+
+	useEffect(() => {
+		console.log(
+			'Recommended Movies Array in side useEffect:',
+			recommendedMovies
+		);
+	}, [recommendedMovies]);
+
+	const getRecForWatchedMovies = async (id) => {
+		console.log(`Inside getRecForWatchedMovies for id ${id}`);
+		const recommendEndPoint = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${APIKey}&language=en-US&page=1`;
+
+		try {
+			const recMovies = await fetch(recommendEndPoint);
+			const jsonRecMovies = await recMovies.json();
+
+			if (jsonRecMovies.results.length === 0) {
+				console.log('Sorry, No Recommendations found!!');
+				console.log('Recommended Movies Array : ', recommendedMovies);
+				return;
+			}
+
+			const topFiveRecMovies = jsonRecMovies.results.slice(0, 5);
+			// console.log(jsonRecMovies.results);
+			console.log(`Top 5 rec movies for id ${id}: `, topFiveRecMovies);
+			recMoviesList = [...topFiveRecMovies, ...recMoviesList];
+			console.log('RecMOVIESLIST : ', recMoviesList);
+			// setRecommendedMovies(jsonRecMovies.results);
+			console.log('Recommended Movies Array : ', recommendedMovies);
+			// let newRecMovies = recommendedMovies.concat(topFiveRecMovies);
+			let newRecMovies = topFiveRecMovies.concat(recommendedMovies);
+
+			console.log('New Rec Movies', newRecMovies);
+			setRecommendedMovies(newRecMovies);
+			// setRecommendedMovies(recMoviesList);
+			console.log(`setRecommendedMovies called for ${id}`);
+		} catch (err) {
+			console.log('err in fetching recommended movie : ', err);
+		}
+	};
 
 	// console.log(popularMovies);
 	// console.log('Trending Movies : ', trendingMovies);
@@ -87,7 +153,7 @@ function MovieProvider({ children }) {
 				`${getMovieAPI}${id}?api_key=${APIKey}&language=en-US`
 			);
 			const searchJSON = await searchRequest.json();
-			// console.log(searchJSON);
+			console.log(searchJSON);
 			setMovie(searchJSON);
 			// setIsLoading(false);
 		} catch (err) {
@@ -95,6 +161,16 @@ function MovieProvider({ children }) {
 		}
 	};
 	// console.log(trendingMovies);
+
+	const updateWatchedMovies = (newMovie) => {
+		const updatedMovies = [...watchedMovies, newMovie];
+		console.log('Updated watched movies are : ', updatedMovies);
+		setWatchedMovies(updatedMovies);
+		getRecForWatchedMovies(newMovie);
+	};
+
+	// console.log('Trending Movies : ', trendingMovies);
+	// console.log('Recommended Movies : ', recommendedMovies);
 
 	return (
 		<MovieContext.Provider
@@ -107,6 +183,7 @@ function MovieProvider({ children }) {
 				getSingleMovie,
 				movie,
 				recommendedMovies,
+				updateWatchedMovies,
 			}}
 		>
 			{children}
