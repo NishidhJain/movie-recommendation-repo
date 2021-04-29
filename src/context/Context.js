@@ -22,7 +22,7 @@ function MovieProvider({ children }) {
 	const [movie, setMovie] = useState({});
 	// let recMoviesList = [];
 	// const [isLoading, setIsLoading] = useState(true);
-	const [watchedMovies, setWatchedMovies] = useState([21614]);
+	const [watchedMovies, setWatchedMovies] = useState([315635]);
 
 	useEffect(() => {
 		async function fetchMovies() {
@@ -172,6 +172,7 @@ function MovieProvider({ children }) {
 			console.log('Updated watched movies are : ', updatedMovies);
 			setWatchedMovies(updatedMovies);
 			getRecForWatchedMovies(newMovie);
+			alert('Thanks for watching!!');
 		} else {
 			console.log(
 				`You have watched this movie previously having id : ${newMovie}`

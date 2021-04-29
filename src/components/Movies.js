@@ -3,13 +3,15 @@ import { MovieContext } from '../context/Context';
 import Movie from './Movie';
 
 function MovieRow({ moviesList }) {
-	// console.log(trendingMovies);
 	return (
 		<section className='movies__row'>
 			<div className='movies__gradient'></div>
-			{moviesList?.map((movie) => (
-				<Movie key={movie.id} {...movie} />
-			))}
+			{moviesList?.map(
+				(movie) =>
+					(movie.backdrop_path || movie.poster_path) && (
+						<Movie key={movie.id} {...movie} mb />
+					)
+			)}
 		</section>
 	);
 }
