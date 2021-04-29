@@ -39,7 +39,7 @@ function SingleMovie() {
 
 	const handleWatchClick = () => {
 		// console.log(`Clicked Watch for movie ${id}`);
-		updateWatchedMovies(Number(id));
+		updateWatchedMovies(Number(id), movie);
 	};
 
 	return (
@@ -97,7 +97,10 @@ function SingleMovie() {
 								<h3 className='singleMovie__similarTitle'>Similar Movies</h3>
 								<div className='singleMovie__similarMovieDiv'>
 									{similarMovies?.map((similarMovie) => (
-										<div className='singleMovie__similarMovieRow'>
+										<div
+											className='singleMovie__similarMovieRow'
+											key={similarMovie.id}
+										>
 											<p className='singleMovie__similarMovieTitle'>
 												{similarMovie.title || similarMovie.original_title}
 											</p>

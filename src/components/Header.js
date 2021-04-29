@@ -15,11 +15,11 @@ function Header() {
 								<FaSearch className='header__icon' />
 							</Link>
 						</li>
-						<li className='header__listItem'>
+						{/* <li className='header__listItem'>
 							<Link to='/profile' className='header__link'>
 								Profile
 							</Link>
-						</li>
+						</li> */}
 					</ul>
 				</nav>
 			</div>

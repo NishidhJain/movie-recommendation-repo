@@ -88,7 +88,7 @@ function BannerMovie() {
 
 	const handleWatchClick = () => {
 		// console.log(bannerMovie.id);
-		updateWatchedMovies(bannerMovie?.id);
+		updateWatchedMovies(bannerMovie?.id, bannerMovie);
 	};
 
 	const getGenresName = () => {

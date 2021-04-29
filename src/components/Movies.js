@@ -5,7 +5,7 @@ import Movie from './Movie';
 function MovieRow({ moviesList }) {
 	return (
 		<section className='movies__row'>
-			<div className='movies__gradient'></div>
+			{/* <div className='movies__gradient'></div> */}
 			{moviesList?.map(
 				(movie) =>
 					(movie.backdrop_path || movie.poster_path) && (
@@ -17,13 +17,17 @@ function MovieRow({ moviesList }) {
 }
 
 function Movies() {
-	const { trendingMovies, recommendedMovies } = useContext(MovieContext);
+	const { trendingMovies, recommendedMovies, watchedMoviesObject } = useContext(
+		MovieContext
+	);
 	return (
 		<section className='movies'>
 			<h2 className='movies__rowTitle'>Trending Movies</h2>
 			<MovieRow moviesList={trendingMovies} />
 			<h2 className='movies__rowTitle'>Recommended Movies</h2>
 			<MovieRow moviesList={recommendedMovies} />
+			<h2 className='movies__rowTitle'>Watched Movies</h2>
+			<MovieRow moviesList={watchedMoviesObject} />
 		</section>
 	);
 }

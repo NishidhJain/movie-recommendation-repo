@@ -1,5 +1,6 @@
 .movies {
 	@include container;
+	margin: 2rem auto;
 
 	&__row {
 		position: relative;
@@ -15,6 +16,10 @@
 		// 	content: '';
 
 		// }
+	}
+
+	&__rowTitle:not(:first-child) {
+		margin-top: 4rem;
 	}
 
 	&__gradient {
